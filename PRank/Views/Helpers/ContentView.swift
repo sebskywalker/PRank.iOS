@@ -8,6 +8,41 @@
 import SwiftUI
 import CoreData
 
+
+
+struct ContentView: View {
+    var body: some View {
+       
+        
+        PRankList()
+        
+            }
+        }
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -84,3 +119,5 @@ private let itemFormatter: DateFormatter = {
 #Preview {
     ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }
+
+*/

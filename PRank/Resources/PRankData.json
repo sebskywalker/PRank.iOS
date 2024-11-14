@@ -1,0 +1,194 @@
+[
+    {
+        "name": "Sam Sulek",
+        "category": "Elite",
+        "city": "Delaware",
+        "state": "Ohio",
+        "id": 1001,
+        "isFeatured": true,
+        "isFavorite": true,
+        "nickname": "The Gym Rat",
+        "coordinates": {
+            "longitude": -98.5795,
+            "latitude": 39.8283
+        },
+        "description": "Sam Sulek is known for his incredible dedication to fitness, standing out in the gym world with his discipline and strength.",
+        "imageName": "samsulek"
+    },
+    {
+        "name": "Chris Bumstead",
+        "category": "Top Global",
+        "city": "Ottawa",
+        "state": "Ontario",
+        "id": 1002,
+        "isFeatured": true,
+        "isFavorite": true,
+        "nickname": "Mr. Olympia",
+        "coordinates": {
+            "longitude": -75.6972,
+            "latitude": 45.4215
+        },
+        "description": "Chris Bumstead, known as CBUM, is a world-renowned bodybuilder and multiple-time Mr. Olympia champion, recognized for his exceptional muscle mass and competitive presence.",
+        "imageName": "cbum"
+    },
+    {
+        "name": "Ronnie Coleman",
+        "category": "Legend",
+        "city": "Arlington",
+        "state": "Texas",
+        "id": 1003,
+        "isFeatured": true,
+        "isFavorite": true,
+        "nickname": "The King",
+        "coordinates": {
+            "longitude": -97.1081,
+            "latitude": 32.7357
+        },
+        "description": "Ronnie Coleman, also known as 'The King', is a retired bodybuilding icon and 8-time Mr. Olympia winner, remembered for his immense strength and lasting legacy.",
+        "imageName": "ronniecoleman"
+    },
+    {
+        "name": "Arnold Schwarzenegger",
+        "category": "Legend",
+        "city": "Los Angeles",
+        "state": "California",
+        "id": 1007,
+        "isFeatured": true,
+        "isFavorite": true,
+        "nickname": "The Austrian Oak",
+        "coordinates": {
+            "longitude": -118.2437,
+            "latitude": 34.0522
+        },
+        "description": "Arnold Schwarzenegger, 'The Austrian Oak', is a legendary retired bodybuilder and actor, with a globally recognized legacy in fitness and bodybuilding.",
+        "imageName": "arnold"
+    },
+    {
+        "name": "Beltcast",
+        "category": "Professional",
+        "city": "Unknown",
+        "state": "USA",
+        "id": 1004,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "Beast Mode",
+        "coordinates": {
+            "longitude": -98.5795,
+            "latitude": 39.8283
+        },
+        "description": "Beltcast is a professional in the fitness industry, known for his dedication to personal growth and his 'Beast Mode' mentality.",
+        "imageName": "beltcast"
+    },
+    {
+        "name": "Andoni",
+        "category": "Professional",
+        "city": "Madrid",
+        "state": "Community of Madrid",
+        "id": 1005,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "The Pro",
+        "coordinates": {
+            "longitude": -3.7038,
+            "latitude": 40.4168
+        },
+        "description": "Andoni is a passionate professional in the fitness community, recognized for his dedication and expertise.",
+        "imageName": "andoni"
+    },
+    {
+        "name": "Fernando Guzman",
+        "category": "Advanced",
+        "city": "Mexico City",
+        "state": "CDMX",
+        "id": 1014,
+        "isFeatured": false,
+        "isFavorite": true,
+        "nickname": "Blake",
+        "coordinates": {
+            "longitude": -99.1332,
+            "latitude": 19.4326
+        },
+        "description": "Fernando Guzman, known as Blake, has achieved an advanced level of training with a considerable amount of muscle mass and years of experience.",
+        "imageName": "blake"
+    },
+    {
+        "name": "Sebastian Verastegui",
+        "category": "Intermediate",
+        "city": "Mexico City",
+        "state": "CDMX",
+        "id": 1015,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "Seb's",
+        "coordinates": {
+            "longitude": -99.1332,
+            "latitude": 19.4326
+        },
+        "description": "Sebastian Verastegui, known as Seb's, is on his way to greatness with visible muscle development, driven by relentless passion and dedication.",
+        "imageName": "sebs"
+    },
+    {
+        "name": "Emil Carmona",
+        "category": "Beginner",
+        "city": "Mexico City",
+        "state": "CDMX",
+        "id": 1016,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "Choman",
+        "coordinates": {
+            "longitude": -99.1332,
+            "latitude": 19.4326
+        },
+        "description": "Emil Carmona, known as Choman, was 'nerfed' to the beginner category by the 'chocos', starting his journey towards building strength and muscle.",
+        "imageName": "choman"
+    },
+    {
+        "name": "Rocky Balboa",
+        "category": "Legend",
+        "city": "Philadelphia",
+        "state": "Pennsylvania",
+        "id": 1006,
+        "isFeatured": true,
+        "isFavorite": true,
+        "nickname": "The Italian Stallion",
+        "coordinates": {
+            "longitude": -75.1652,
+            "latitude": 39.9526
+        },
+        "description": "Rocky Balboa is an iconic fictional boxer, celebrated for his unbreakable spirit and determination, leaving a lasting legacy.",
+        "imageName": "rockybalboa"
+    },
+    {
+        "name": "David Dalaid",
+        "category": "Elite",
+        "city": "Houston",
+        "state": "Texas",
+        "id": 1010,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "Texas Titan",
+        "coordinates": {
+            "longitude": -95.3698,
+            "latitude": 29.7604
+        },
+        "description": "David Dalaid, known as 'Texas Titan', is recognized in the fitness world as an elite athlete with outstanding strength and determination.",
+        "imageName": "daviddalaid"
+    },
+    {
+        "name": "Anatolie",
+        "category": "Elite",
+        "city": "Bucharest",
+        "state": "Romania",
+        "id": 1011,
+        "isFeatured": false,
+        "isFavorite": true,
+        "nickname": "The Powerhouse",
+        "coordinates": {
+            "longitude": 26.1025,
+            "latitude": 44.4268
+        },
+        "description": "Anatolie, known as 'The Powerhouse', is a recognized elite athlete from Romania, famous for his strength and imposing physique.",
+        "imageName": "anatolie"
+    }
+]
