@@ -8,8 +8,14 @@
 import Foundation
 
 
-var PRanks: [PRank] = load("PRankData.jason")
+//var PRanks: [PRank] = load("PRankData.json")
 
+final class ModelData: ObservableObject{
+    
+    @Published var PRanks: [PRank] = load("PRankData.json")
+}
+
+// Leemos el archivo
 
 func load<T: Decodable>(_ fileName: String) -> T {
     let data: Data
@@ -19,12 +25,16 @@ func load<T: Decodable>(_ fileName: String) -> T {
         
     }
     
+//Cargamos la data
+    
     do{
         data = try Data(contentsOf: file)
     } catch {
         fatalError("Couldn't load \(fileName) from main bundle: \(error)")
     }
     
+ //Decodificamos
+     
     do {
         let decoder = JSONDecoder()
         return try decoder.decode(T.self, from: data)

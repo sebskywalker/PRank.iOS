@@ -9,8 +9,14 @@ import SwiftUI
 
 struct PRankDetail: View {
     
+    @EnvironmentObject var modelData: ModelData
     var PRank: PRank
     
+    var PRankIndex: Int {
+        modelData.PRanks.firstIndex(where: { $0.id == PRank.id})!
+    }
+    
+
     var body: some View {
         ScrollView {
             // Mapa con la altura original
@@ -29,8 +35,16 @@ struct PRankDetail: View {
 
             // Contenido debajo de la imagen
             VStack(alignment: .leading) {
+                
+                HStack {
+                    
+                
+                
                 Text(PRank.name)
                     .font(.title)
+                    
+                    FavoriteButton(isSet: $modelData.PRanks [PRankIndex].isFavorite)
+            }
                 
                 HStack {
                     Text(PRank.nickname)
@@ -56,6 +70,16 @@ struct PRankDetail: View {
     }
 }
 
-#Preview {
-    PRankDetail(PRank: PRanks[3])
+
+
+struct PRankDetail_Previews: PreviewProvider {
+    static let modelData = ModelData()
+    static var previews: some View {
+        
+        PRankDetail(PRank: ModelData().PRanks[0])
+            .environmentObject(modelData)
+    }
 }
+
+
+

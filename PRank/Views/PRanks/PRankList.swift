@@ -13,7 +13,7 @@ struct PRankList: View {
     
     @State private  var showFavoriteOnly = false
     var fileredPRanks: [PRank] {
-        modelData.PRanks.filter{ PRank in
+        ModelData.PRanks.filter{ PRank in
             (PRank.isFavorite || !showFavoriteOnly)
             
         }    }
@@ -46,9 +46,15 @@ struct PRankList: View {
     }
 }
 
-    #Preview {
-        PRankList()
-             
-
+struct PRankList_Previews: PreviewProvider {
+    static var modelData = ModelData()
+    
+    static var previews: some View {
+        //ForEach([])
+        
+        PRankList().previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max")).environmentObject(modelData)
     }
+}
 
+
+  

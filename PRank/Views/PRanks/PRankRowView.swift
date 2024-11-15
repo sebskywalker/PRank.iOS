@@ -33,18 +33,18 @@ struct PRankRowView_Previews: PreviewProvider {
     static var PRanks = ModelData().PRanks
     static var previews: some View {
         
-        Group {
+      //  Group {
             VStack {
                 
                 PRankRowView(PRank: PRanks[0])
-                    .previewLayout(.fixed(width: 300, height: 70))
+                  //  .previewLayout(.fixed(width: 300, height: 70))
                 
                 PRankRowView(PRank: PRanks[1])
-                    .previewLayout(.fixed(width: 300, height: 70))
+                   // .previewLayout(.fixed(width: 300, height: 70))
                 
                 PRankRowView(PRank: PRanks[2])
-                    .previewLayout(.fixed(width: 300, height: 70))
-            }
+                   // .previewLayout(.fixed(width: 300, height: 70))
+            }.previewLayout(.fixed(width: 300, height: 70))
         }
     }
-}
+//}

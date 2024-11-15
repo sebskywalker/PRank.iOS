@@ -9,12 +9,14 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct PRank: Codable, Hashable {
+struct PRank: Codable, Hashable, Identifiable {
     var id: Int
     var name: String
     var nickname: String
     var state: String
     var description: String
+    var isFavorite: Bool
+    
     
     private var imageName: String
         var image: Image {
