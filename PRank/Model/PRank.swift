@@ -28,7 +28,7 @@ struct PRank: Codable, Hashable, Identifiable {
         case advanced = "Advanced"
         case intermediate = "Intermediate"
         case beginner = "Beginner"
-         // Esto corresponde a "Elite"
+        
     }
     
     private var imageName: String

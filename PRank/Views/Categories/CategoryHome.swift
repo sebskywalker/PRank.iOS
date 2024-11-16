@@ -8,45 +8,51 @@
 import SwiftUI
 
 struct CategoryHome: View {
-<<<<<<< HEAD
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-=======
-    
     @EnvironmentObject var modelData: ModelData
-    
+    @State private var currentIndex: Int = 0
+    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+
     var body: some View {
-        
-        NavigationView{
-            
-            List{
-                
-                modelData.featured[5].image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipped()
-                    .listRowInsets(EdgeInsets())
-                
-                
-                ForEach(modelData.categories.keys
-                    .sorted(), id: \.self) { key in
-                        CategoryRow(categoryName: key,
-                                    items: modelData.categories[key]!)
+        NavigationView {
+            List {
+                // Carrusel de imágenes
+                TabView(selection: $currentIndex) {
+                    ForEach(0..<4, id: \.self) { index in
+                        modelData.featured[min(index, modelData.featured.count - 1)].image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(height: 250)
+                            .clipped()
+                            .cornerRadius(10)
+                            .padding(.horizontal)
+                            .tag(index)
                     }
-                    .listRowInsets(EdgeInsets())
+                }
+                .frame(height: 250)
+                .tabViewStyle(PageTabViewStyle())
+                .onReceive(timer) { _ in
+                    withAnimation {
+                        currentIndex = (currentIndex + 1) % 4
+                    }
+                }
+                .listRowInsets(EdgeInsets())
+
+                // Categorías ordenadas
+                ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
+                    if let items = modelData.categories[key] {
+                        CategoryRow(categoryName: key, items: items)
+                    }
+                }
+                .listRowInsets(EdgeInsets())
             }
-           
-                .navigationTitle("Featured")
+            .navigationTitle("Featured")
         }
->>>>>>> 7cda8a9 (new categorys)
     }
 }
 
-#Preview {
-    CategoryHome()
-<<<<<<< HEAD
-=======
-        .environmentObject(ModelData())
->>>>>>> 7cda8a9 (new categorys)
+struct CategoryHome_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoryHome()
+            .environmentObject(ModelData())
+    }
 }

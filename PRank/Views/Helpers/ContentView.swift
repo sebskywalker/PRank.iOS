@@ -9,6 +9,8 @@ import CoreData
 
 struct ContentView: View {
     @State private var selection: Tab = .featured
+    @State private var currentIndex = 0 // Para manejar el índice del carrusel
+    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
     enum Tab {
         case featured
@@ -18,7 +20,7 @@ struct ContentView: View {
     private let categoryOrder: [PRank.Category] = [
         .legend,       // Primero las Leyendas
         .topglobal,    // Luego los Top Globales
-        .professional,
+        .professional, // Profesionales
         .elite,        // Luego los Elite
         .advanced,     // Luego los Avanzados
         .intermediate, // Luego los Intermedios
@@ -28,30 +30,48 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selection) {
             NavigationView {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 20) {
-                        // Imagen específica como portada
-                        Image("samsulek2") // Aquí asegúrate que "samsulek2" sea el nombre correcto en tus assets
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 250)
-                            .clipped()
-                            .cornerRadius(10)
-                            .padding(.horizontal)
+                ZStack {
+                    Color("Background1").ignoresSafeArea() // Fondo uniforme
 
-                        // Categorías en el orden deseado
-                        ForEach(categoryOrder, id: \.self) { category in
-                            if let items = ModelData().categories[category.rawValue] {
-                                CategoryRow(categoryName: category.rawValue, items: items)
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 0) { // Eliminamos el espaciado extra
+                            // Carrusel de imágenes
+                            TabView(selection: $currentIndex) {
+                                ForEach(1..<5) { index in
+                                    Image("Feature\(index)")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(height: 250)
+                                        .clipped()
+                                        .cornerRadius(10)
+                                        .padding(.horizontal)
+                                }
+                            }
+                            .frame(height: 250)
+                            .tabViewStyle(PageTabViewStyle())
+                            .onReceive(timer) { _ in
+                                withAnimation {
+                                    currentIndex = (currentIndex + 1) % 4
+                                }
+                            }
+
+                            // Categorías en orden
+                            ForEach(categoryOrder, id: \.self) { category in
+                                if let items = ModelData().categories[category.rawValue] {
+                                    CategoryRow(categoryName: category.rawValue, items: items)
+                                        .background(Color("Background1")) // Fondo uniforme para categorías
+                                }
                             }
                         }
+                        .background(Color("Background1")) // Fondo de todo el ScrollView
                     }
                 }
-                .navigationTitle("PRank")
+                
+                
             }
             .tag(Tab.featured)
             .tabItem {
-                Label("Featured", systemImage: "star")
+                Label("Favorite", systemImage: "star") // Cambiar texto de "Featured" a "Favorite"
             }
 
             PRankList()
@@ -59,6 +79,12 @@ struct ContentView: View {
                 .tabItem {
                     Label("List", systemImage: "list.bullet")
                 }
+        }
+        .background(Color("Dark")) // Fondo oscuro para la barra de pestañas
+        .onAppear {
+            UITabBar.appearance().backgroundColor = UIColor(named: "Dark") // Fondo oscuro en TabBar
+            UITabBar.appearance().barTintColor = UIColor(named: "Dark")
+            UITabBar.appearance().unselectedItemTintColor = UIColor.lightGray
         }
     }
 }
@@ -69,8 +95,6 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(ModelData())
     }
 }
-
-
 /*
 
 struct ContentView: View {
