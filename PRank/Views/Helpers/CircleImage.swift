@@ -13,12 +13,13 @@ struct CircleImage: View {
     
     var body: some View {
         image
+            .resizable()
+            .aspectRatio(contentMode: .fill) // Asegura que se llene el círculo sin distorsión
             .clipShape(Circle())
             .overlay(
                 Circle().stroke(Color.white, lineWidth: 7)
             )
             .shadow(radius: 7)
-            .scaleEffect(0.999) // Aplica una reducción del 25%
     }
 }
 

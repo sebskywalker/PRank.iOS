@@ -4,20 +4,64 @@
 //
 //  Created by seb's on 11/12/24.
 //
-
 import SwiftUI
 import CoreData
 
-
-
 struct ContentView: View {
+    @State private var selection: Tab = .featured
+
+    enum Tab {
+        case featured
+        case list
+    }
+
+    private let categoryOrder: [PRank.Category] = [
+        .legend,       // Primero las Leyendas
+        .topglobal,    // Luego los Top Globales
+        .professional,
+        .elite,        // Luego los Elite
+        .advanced,     // Luego los Avanzados
+        .intermediate, // Luego los Intermedios
+        .beginner      // Por último los Principiantes
+    ]
+
     var body: some View {
-       
-        
-        PRankList()
-        
+        TabView(selection: $selection) {
+            NavigationView {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        // Imagen específica como portada
+                        Image("samsulek2") // Aquí asegúrate que "samsulek2" sea el nombre correcto en tus assets
+                            .resizable()
+                            .scaledToFill()
+                            .frame(height: 250)
+                            .clipped()
+                            .cornerRadius(10)
+                            .padding(.horizontal)
+
+                        // Categorías en el orden deseado
+                        ForEach(categoryOrder, id: \.self) { category in
+                            if let items = ModelData().categories[category.rawValue] {
+                                CategoryRow(categoryName: category.rawValue, items: items)
+                            }
+                        }
+                    }
+                }
+                .navigationTitle("PRank")
             }
+            .tag(Tab.featured)
+            .tabItem {
+                Label("Featured", systemImage: "star")
+            }
+
+            PRankList()
+                .tag(Tab.list)
+                .tabItem {
+                    Label("List", systemImage: "list.bullet")
+                }
         }
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -25,21 +69,6 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(ModelData())
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*

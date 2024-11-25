@@ -65,7 +65,7 @@
     },
     {
         "name": "Beltcast",
-        "category": "Professional",
+        "category": "Elite",
         "city": "Unknown",
         "state": "USA",
         "id": 1004,
@@ -80,8 +80,24 @@
         "imageName": "beltcast"
     },
     {
+        "name": "Axel Martines",
+        "category": "Elite",
+        "city": "CDMX",
+        "state": "MEXICO",
+        "id": 1020,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "EL AXEL",
+        "coordinates": {
+            "longitude": -98.5795,
+            "latitude": 39.8283
+        },
+        "description": "axel 2.0",
+        "imageName": "axelmartinez"
+    },
+    {
         "name": "Andoni",
-        "category": "Professional",
+        "category": "Elite",
         "city": "Madrid",
         "state": "Community of Madrid",
         "id": 1005,
@@ -126,22 +142,6 @@
         },
         "description": "Sebastian Verastegui, known as Seb's, is on his way to greatness with visible muscle development, driven by relentless passion and dedication.",
         "imageName": "sebs"
-    },
-    {
-        "name": "Emil Carmona",
-        "category": "Beginner",
-        "city": "Mexico City",
-        "state": "CDMX",
-        "id": 1016,
-        "isFeatured": false,
-        "isFavorite": false,
-        "nickname": "Choman",
-        "coordinates": {
-            "longitude": -99.1332,
-            "latitude": 19.4326
-        },
-        "description": "Emil Carmona, known as Choman, was 'nerfed' to the beginner category by the 'chocos', starting his journey towards building strength and muscle.",
-        "imageName": "chochoman"
     },
     {
         "name": "Rocky Balboa",
@@ -190,5 +190,263 @@
         },
         "description": "Anatolie, known as 'The Powerhouse', is a recognized elite athlete from Romania, famous for his strength and imposing physique.",
         "imageName": "anatolie"
+    },
+
+    
+    {
+        "name": "Ibai",
+        "category": "Beginner",
+        "city": "Bilbao",
+        "state": "Basque Country",
+        "id": 1017,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "Streamer Beast",
+        "coordinates": {
+            "longitude": -2.934985,
+            "latitude": 43.263012
+        },
+        "description": "Ibai is a popular streamer transitioning into the fitness world.",
+        "imageName": "ibai"
+    },
+    {
+        "name": "Efrain",
+        "category": "Advanced",
+        "city": "Guadalajara",
+        "state": "Jalisco",
+        "id": 1018,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "The Veteran",
+        "coordinates": {
+            "longitude": -103.3918,
+            "latitude": 20.6597
+        },
+        "description": "Efra\u00edn, also known as 'Brazode35', is known for his dedication to bodybuilding.",
+        "imageName": "efrain"
+    },
+    {
+        "name": "Emilio Carmona",
+        "category": "Advanced",
+        "city": "Monterrey",
+        "state": "Nuevo Le\u00f3n",
+        "id": 1019,
+        "isFeatured": false,
+        "isFavorite": true,
+        "nickname": "The Dynamo",
+        "coordinates": {
+            "longitude": -100.3161,
+            "latitude": 25.6866
+        },
+        "description": "Emilio Carmona is a rising professional in fitness, inspiring others with his energy.",
+        "imageName": "emilio_carmona"
+    },
+    {
+        "name": "Hafthor Bjornsson",
+        "category": "Top Global",
+        "city": "Reykjavik",
+        "state": "Iceland",
+        "id": 1020,
+        "isFeatured": true,
+        "isFavorite": true,
+        "nickname": "The Mountain",
+        "coordinates": {
+            "longitude": -21.8954,
+            "latitude": 64.1355
+        },
+        "description": "Hafthor Bjornsson, known for his role in Game of Thrones, is also a world-class strongman.",
+        "imageName": "hafthor_bjornsson"
+    },
+    {
+        "name": "Mr. Best",
+        "category": "Beginner",
+        "city": "Miami",
+        "state": "Florida",
+        "id": 1021,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "Iron Will",
+        "coordinates": {
+            "longitude": -80.1918,
+            "latitude": 25.7617
+        },
+        "description": "Mr. Best has an elite level of fitness and is renowned for his dedication to health.",
+        "imageName": "mrbest"
+    },
+    {
+        "name": "Moi Aranda",
+        "category": "Advanced",
+        "city": "Mexico City",
+        "state": "CDMX",
+        "id": 1022,
+        "isFeatured": false,
+        "isFavorite": true,
+        "nickname": "The Silent Warrior",
+        "coordinates": {
+            "longitude": -99.1332,
+            "latitude": 19.4326
+        },
+        "description": "Moi Aranda has a consistent training routine, steadily advancing in the fitness world.",
+        "imageName": "moi_aranda"
+    },
+    {
+        "name": "Roman Carpio",
+        "category": "Intermediate",
+        "city": "Lima",
+        "state": "Peru",
+        "id": 1023,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "Inca Strength",
+        "coordinates": {
+            "longitude": -77.0428,
+            "latitude": -12.0464
+        },
+        "description": "Roman Carpio is an advanced athlete recognized for his remarkable strength.",
+        "imageName": "roman_carpio"
+    },
+    {
+        "name": "Christian Jaden",
+        "category": "Intermediate",
+        "city": "Los Angeles",
+        "state": "California",
+        "id": 1024,
+        "isFeatured": false,
+        "isFavorite": false,
+        "nickname": "New Blood",
+        "coordinates": {
+            "longitude": -118.2437,
+            "latitude": 34.0522
+        },
+        "description": "Christian Jaden is starting his journey in the fitness world with high motivation.",
+        "imageName": "christian_jaden"
+    },
+    
+        {
+            "name": "Jordi Wild",
+            "category": "Advanced",
+            "city": "Barcelona",
+            "state": "Catalonia, Spain",
+            "id": 1026,
+            "isFeatured": false,
+            "isFavorite": false,
+            "nickname": "The Wild Beast",
+            "coordinates": {"longitude": 2.154007, "latitude": 41.390205},
+            "description": "Jordi Wild is a fitness enthusiast starting his journey into the world of bodybuilding.",
+            "imageName": "jordi_wild"
+        },
+        {
+            "name": "FernanFloo",
+            "category": "Beginner",
+            "city": "San Salvador",
+            "state": "El Salvador",
+            "id": 1027,
+            "isFeatured": false,
+            "isFavorite": false,
+            "nickname": "The Laughing Lifter",
+            "coordinates": {"longitude": -89.189, "latitude": 13.6929},
+            "description": "FernanFloo, famous for his comedic talent, has recently ventured into fitness.",
+            "imageName": "fernanflo"
+        },
+        {
+            "name": "William Bonac",
+            "category": "Professional",
+            "city": "Arnhem",
+            "state": "Gelderland, Netherlands",
+            "id": 1028,
+            "isFeatured": true,
+            "isFavorite": true,
+            "nickname": "The Conqueror",
+            "coordinates": {"longitude": 5.8987, "latitude": 51.9851},
+            "description": "William Bonac is a seasoned professional bodybuilder, known for his victories in the Arnold Classic.",
+            "imageName": "william_bonac"
+        },
+        {
+            "name": "Nathan De Asha",
+            "category": "Professional",
+            "city": "Liverpool",
+            "state": "England, UK",
+            "id": 1029,
+            "isFeatured": true,
+            "isFavorite": false,
+            "nickname": "The Scouse Sensation",
+            "coordinates": {"longitude": -2.9779, "latitude": 53.4084},
+            "description": "Nathan De Asha has made a name for himself with multiple wins in IFBB Pro League events.",
+            "imageName": "nathandeasha"
+        },
+        {
+            "name": "George Peterson",
+            "category": "Legend",
+            "city": "New York City",
+            "state": "New York, USA",
+            "id": 1030,
+            "isFeatured": true,
+            "isFavorite": true,
+            "nickname": "Da Bull",
+            "coordinates": {"longitude": -74.006, "latitude": 40.7128},
+            "description": "George Peterson was a celebrated bodybuilder in the Classic Physique and 212 divisions, known for his incredible back development.",
+            "imageName": "george_peterson"
+        },
+        {
+            "name": "Roelly Winklaar",
+            "category": "Professional",
+            "city": "Willemstad",
+            "state": "Curaçao",
+            "id": 1031,
+            "isFeatured": true,
+            "isFavorite": true,
+            "nickname": "The Beast",
+            "coordinates": {"longitude": -68.9335, "latitude": 12.1224},
+            "description": "Roelly Winklaar is a fan-favorite bodybuilder, famous for his massive arms and stage presence.",
+            "imageName": "roelly_winklaar"
+        },
+        {
+            "name": "Breon Ansley",
+            "category": "Top Global",
+            "city": "Los Angeles",
+            "state": "California, USA",
+            "id": 1032,
+            "isFeatured": true,
+            "isFavorite": true,
+            "nickname": "Classic Champ",
+            "coordinates": {"longitude": -118.2437, "latitude": 34.0522},
+            "description": "Breon Ansley is a two-time Classic Physique Mr. Olympia champion, known for his symmetry and posing skills.",
+            "imageName": "breon_ansley"
+        },
+        
+        {
+            "name": "The Grefg",
+            "category": "Intermediate",
+            "city": "Murcia",
+            "state": "Spain",
+            "id": 1033,
+            "isFeatured": false,
+            "isFavorite": false,
+            "nickname": "The Rising Streamer",
+            "coordinates": {"longitude": -1.1307, "latitude": 37.9922},
+            "description": "The Grefg, a famous streamer, is beginning to explore the fitness lifestyle.",
+            "imageName": "thegref"
+        },
+    
+    
+    
+    
+    {
+        "name": "Javier Pardo",
+        "category": "Beginner",
+        "city": "Buenos Aires",
+        "state": "Argentina",
+        "id": 1025,
+        "isFeatured": false,
+        "isFavorite": true,
+        "nickname": "The Puma",
+        "coordinates": {
+            "longitude": -58.3816,
+            "latitude": -34.6037
+        },
+        "description": "Javier Pardo is an elite athlete known for his exceptional speed and agility.",
+        "imageName": "javier_pardo"
     }
 ]
+    
+

@@ -16,7 +16,20 @@ struct PRank: Codable, Hashable, Identifiable {
     var state: String
     var description: String
     var isFavorite: Bool
+    var isFeatured: Bool
+    var category: Category
     
+    
+    enum Category: String, CaseIterable, Codable {
+        case legend = "Legend"
+        case topglobal = "Top Global"
+        case professional = "Professional"
+        case elite = "Elite"
+        case advanced = "Advanced"
+        case intermediate = "Intermediate"
+        case beginner = "Beginner"
+         // Esto corresponde a "Elite"
+    }
     
     private var imageName: String
         var image: Image {
