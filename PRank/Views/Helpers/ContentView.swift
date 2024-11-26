@@ -5,94 +5,42 @@
 //  Created by seb's on 11/12/24.
 //
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
-    @State private var selection: Tab = .featured
-    @State private var currentIndex = 0 // Para manejar el índice del carrusel
-    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    @State private var selection: Tab = .men
 
     enum Tab {
-        case featured
+        case men
+        case women
         case list
     }
 
-    private let categoryOrder: [PRank.Category] = [
-        .legend,       // Primero las Leyendas
-        .topglobal,    // Luego los Top Globales
-        .professional, // Profesionales
-        .elite,        // Luego los Elite
-        .advanced,     // Luego los Avanzados
-        .intermediate, // Luego los Intermedios
-        .beginner      // Por último los Principiantes
-    ]
-
     var body: some View {
         TabView(selection: $selection) {
-            NavigationView {
-                ZStack {
-                    Color("Background1").ignoresSafeArea() // Fondo uniforme
-
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 0) { // Eliminamos el espaciado extra
-                            // Carrusel de imágenes
-                            TabView(selection: $currentIndex) {
-                                ForEach(1..<5) { index in
-                                    Image("Feature\(index)")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(height: 250)
-                                        .clipped()
-                                        .cornerRadius(10)
-                                        .padding(.horizontal)
-                                }
-                            }
-                            .frame(height: 250)
-                            .tabViewStyle(PageTabViewStyle())
-                            .onReceive(timer) { _ in
-                                withAnimation {
-                                    currentIndex = (currentIndex + 1) % 4
-                                }
-                            }
-
-                            // Categorías en orden
-                            ForEach(categoryOrder, id: \.self) { category in
-                                if let items = ModelData().categories[category.rawValue] {
-                                    CategoryRow(categoryName: category.rawValue, items: items)
-                                        .background(Color("Background1")) // Fondo uniforme para categorías
-                                }
-                            }
-                        }
-                        .background(Color("Background1")) // Fondo de todo el ScrollView
-                    }
+            CategoryHome()
+                .tabItem {
+                    Label("Men", systemImage: "person")
                 }
-                
-                
-            }
-            .tag(Tab.featured)
-            .tabItem {
-                Label("Favorite", systemImage: "star") // Cambiar texto de "Featured" a "Favorite"
-            }
+                .tag(Tab.men)
+
+            WomenCategoryHome()
+                .tabItem {
+                    Label("Women", systemImage: "person.fill")
+                }
+                .tag(Tab.women)
 
             PRankList()
-                .tag(Tab.list)
                 .tabItem {
                     Label("List", systemImage: "list.bullet")
                 }
+                .tag(Tab.list)
         }
-        .background(Color("Dark")) // Fondo oscuro para la barra de pestañas
+        .background(Color("Dark"))
         .onAppear {
-            UITabBar.appearance().backgroundColor = UIColor(named: "Dark") // Fondo oscuro en TabBar
+            UITabBar.appearance().backgroundColor = UIColor(named: "Dark")
             UITabBar.appearance().barTintColor = UIColor(named: "Dark")
             UITabBar.appearance().unselectedItemTintColor = UIColor.lightGray
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .environmentObject(ModelData())
     }
 }
 /*

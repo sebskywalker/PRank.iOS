@@ -18,8 +18,21 @@ struct PRank: Codable, Hashable, Identifiable {
     var isFavorite: Bool
     var isFeatured: Bool
     var category: Category
-    
-    
+
+    // Nuevos atributos
+    var trainingSpot: String?
+    var weightKg: Double
+    var weightLbs: Double
+    var heightFt: Double
+    var currentAge: Int? // Solo para mujeres
+    var primeAge: Int?   // Solo para hombres
+
+    var prBenchPressKg: Double?
+    var prBenchPressLbs: Double?
+    var prBarbellSquatKg: Double?
+    var prBarbellSquatLbs: Double?
+    var prHipThrustKg: Double? // Solo para mujeres
+
     enum Category: String, CaseIterable, Codable {
         case legend = "Legend"
         case topglobal = "Top Global"
@@ -28,25 +41,20 @@ struct PRank: Codable, Hashable, Identifiable {
         case advanced = "Advanced"
         case intermediate = "Intermediate"
         case beginner = "Beginner"
-        
     }
-    
+
     private var imageName: String
-        var image: Image {
-            Image(imageName)
-        }
-    
-    private var coordinates: Coordinates
-    
-    var locationCoordinates: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: coordinates.latitude,
-                               longitude: coordinates.longitude)
+    var image: Image {
+        Image(imageName)
     }
-    
+
+    private var coordinates: Coordinates
+    var locationCoordinates: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)
+    }
+
     struct Coordinates: Hashable, Codable {
         var latitude: Double
         var longitude: Double
     }
-        
 }
-    

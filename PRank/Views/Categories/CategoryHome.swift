@@ -9,43 +9,49 @@ import SwiftUI
 
 struct CategoryHome: View {
     @EnvironmentObject var modelData: ModelData
-    @State private var currentIndex: Int = 0
+    @State private var currentIndex = 0 // Para manejar el índice del carrusel
     private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
     var body: some View {
         NavigationView {
-            List {
-                // Carrusel de imágenes
-                TabView(selection: $currentIndex) {
-                    ForEach(0..<4, id: \.self) { index in
-                        modelData.featured[min(index, modelData.featured.count - 1)].image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 250)
-                            .clipped()
-                            .cornerRadius(10)
-                            .padding(.horizontal)
-                            .tag(index)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    // Carrusel de imágenes
+                    TabView(selection: $currentIndex) {
+                        ForEach(1..<5) { index in
+                            Image("Feature\(index)") // Asegúrate de tener imágenes nombradas como "Feature1", "Feature2", etc.
+                                .resizable()
+                                .scaledToFill()
+                                .frame(height: 250)
+                                .clipped()
+                                .cornerRadius(10)
+                                .padding(.horizontal)
+                        }
                     }
-                }
-                .frame(height: 250)
-                .tabViewStyle(PageTabViewStyle())
-                .onReceive(timer) { _ in
-                    withAnimation {
-                        currentIndex = (currentIndex + 1) % 4
+                    .frame(height: 250)
+                    .tabViewStyle(PageTabViewStyle())
+                    .onReceive(timer) { _ in
+                        withAnimation {
+                            currentIndex = (currentIndex + 1) % 4
+                        }
                     }
-                }
-                .listRowInsets(EdgeInsets())
 
-                // Categorías ordenadas
-                ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
-                    if let items = modelData.categories[key] {
-                        CategoryRow(categoryName: key, items: items)
+                    // Categorías en orden especificado
+                    ForEach(modelData.categoryOrder.map { $0.rawValue }, id: \.self) { key in
+                        if let items = modelData.menCategories[key] {
+                            UnifiedCategoryRow(
+                                categoryName: key,
+                                items: items,
+                                isForMen: true
+                            )
+                            .background(Color("Background1"))
+                        }
                     }
                 }
-                .listRowInsets(EdgeInsets())
+                .background(Color("Background1")) // Fondo gris para todo el contenido
             }
-            .navigationTitle("Featured")
+            .background(Color("Background1")) // Fondo gris completo
+            .navigationTitle("Men")
         }
     }
 }

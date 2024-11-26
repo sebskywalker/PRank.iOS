@@ -9,13 +9,11 @@ import SwiftUI
 
 struct PRankRowView: View {
     var PRank: PRank
-    
+
     var body: some View {
-        
-        
-        
         HStack {
-            PRank.image.resizable()
+            PRank.image
+                .resizable()
                 .frame(width: 50, height: 50)
             Text(PRank.name)
             
@@ -30,21 +28,17 @@ struct PRankRowView: View {
 }
 
 struct PRankRowView_Previews: PreviewProvider {
-    static var PRanks = ModelData().PRanks
     static var previews: some View {
-        
-      //  Group {
-            VStack {
-                
-                PRankRowView(PRank: PRanks[0])
-                  //  .previewLayout(.fixed(width: 300, height: 70))
-                
-                PRankRowView(PRank: PRanks[1])
-                   // .previewLayout(.fixed(width: 300, height: 70))
-                
-                PRankRowView(PRank: PRanks[2])
-                   // .previewLayout(.fixed(width: 300, height: 70))
-            }.previewLayout(.fixed(width: 300, height: 70))
+        let modelData = ModelData()
+        return Group {
+            // Previsualización para hombres
+            PRankRowView(PRank: modelData.menPRanks.first!)
+                .previewLayout(.fixed(width: 300, height: 70))
+            
+            // Previsualización para mujeres
+            PRankRowView(PRank: modelData.womenPRanks.first!)
+                .previewLayout(.fixed(width: 300, height: 70))
         }
     }
+}
 //}

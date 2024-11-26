@@ -8,40 +8,36 @@
 import SwiftUI
 
 struct PRankList: View {
+    @EnvironmentObject var modelData: ModelData
+    @State private var showFavoriteOnly = false
     
-    @EnvironmentObject var ModelData: ModelData
+    // Cambiar entre hombres y mujeres según se requiera
+    var selectedPRanks: [PRank] {
+        modelData.menPRanks // Cambiar a `womenPRanks` si es necesario
+    }
     
-    @State private  var showFavoriteOnly = false
-    var fileredPRanks: [PRank] {
-        ModelData.PRanks.filter{ PRank in
-            (PRank.isFavorite || !showFavoriteOnly)
-            
-        }    }
-    
+    var filteredPRanks: [PRank] {
+        selectedPRanks.filter { PRank in
+            (!showFavoriteOnly || PRank.isFavorite)
+        }
+    }
     
     var body: some View {
-        
-        NavigationView{
+        NavigationView {
             List {
-                
-                Toggle(isOn: $showFavoriteOnly){
+                Toggle(isOn: $showFavoriteOnly) {
                     Text("Favorite Only")
                 }
-              ForEach(fileredPRanks) { PRank in
-                  
-                  
-                  
-                  // List(PRanks){ PRank in
-                  
-                  
-                  NavigationLink {
-                      PRankDetail(PRank: PRank)
-                  } label: {
-                      PRankRowView(PRank: PRank)
-                  }
-              }
                 
-            }.navigationBarTitle("PRank")
+                ForEach(filteredPRanks) { PRank in
+                    NavigationLink {
+                        PRankDetail(PRank: PRank, isForMen: true) // Pasamos `isForMen`
+                    } label: {
+                        PRankRowView(PRank: PRank)
+                    }
+                }
+            }
+            .navigationBarTitle("PRank")
         }
     }
 }
@@ -50,11 +46,9 @@ struct PRankList_Previews: PreviewProvider {
     static var modelData = ModelData()
     
     static var previews: some View {
-        //ForEach([])
-        
-        PRankList().previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max")).environmentObject(modelData)
+        PRankList()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
+            .environmentObject(modelData)
     }
 }
-
-
   

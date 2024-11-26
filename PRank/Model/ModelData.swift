@@ -6,29 +6,50 @@
 //
 
 import Foundation
+import Combine
 
 final class ModelData: ObservableObject {
-    @Published var PRanks: [PRank] = load("PRankData.json")
+    // Datos separados para hombres y mujeres
+    @Published var womenPRanks: [PRank] = load("WomenPRankData.json")
+    @Published var menPRanks: [PRank] = load("PRankData.json")
     
-    // Definimos el orden deseado para las categorías
-    private let categoryOrder: [PRank.Category] = [
+    // Orden deseado para las categorías
+    let categoryOrder: [PRank.Category] = [
         .legend,       // Primero las Leyendas
         .topglobal,    // Luego los Top Globales
-        .professional,
+        .professional, // Profesionales
         .elite,        // Luego los Elite
         .advanced,     // Luego los Avanzados
         .intermediate, // Luego los Intermedios
         .beginner      // Por último los Principiantes
     ]
     
-    // Agrupamos y ordenamos las categorías
-    var categories: [String: [PRank]] {
+    // Categorías ordenadas para hombres
+    var menCategories: [String: [PRank]] {
+        orderCategories(data: menPRanks)
+    }
+    
+    // Categorías ordenadas para mujeres
+    var womenCategories: [String: [PRank]] {
+        orderCategories(data: womenPRanks)
+    }
+    
+    // Filtrar destacados (hombres y mujeres)
+    var menFeatured: [PRank] {
+        menPRanks.filter { $0.isFeatured }
+    }
+    
+    var womenFeatured: [PRank] {
+        womenPRanks.filter { $0.isFeatured }
+    }
+    
+    // Función para ordenar las categorías
+    private func orderCategories(data: [PRank]) -> [String: [PRank]] {
         let grouped = Dictionary(
-            grouping: PRanks,
+            grouping: data,
             by: { $0.category.rawValue }
         )
         
-        // Ordenamos las categorías de acuerdo al orden deseado
         return grouped.sorted { lhs, rhs in
             guard
                 let lhsIndex = categoryOrder.firstIndex(where: { $0.rawValue == lhs.key }),
@@ -42,14 +63,9 @@ final class ModelData: ObservableObject {
             result[pair.key] = pair.value
         }
     }
-    
-    // Filtrar los destacados
-    var featured: [PRank] {
-        PRanks.filter { $0.isFeatured }
-    }
 }
 
-// Función para cargar el archivo JSON
+// Función para cargar archivos JSON
 func load<T: Decodable>(_ fileName: String) -> T {
     let data: Data
     

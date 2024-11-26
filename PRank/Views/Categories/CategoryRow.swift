@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CategoryRow: View {
     var categoryName: String
-    var items: [PRank]
+    var items: [PRank] // Se mantiene genérico para hombres y mujeres
+    var isForMen: Bool // Nuevo parámetro para identificar si es para hombres o mujeres
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,29 +24,30 @@ struct CategoryRow: View {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(items) { PRank in
                         NavigationLink {
-                            PRankDetail(PRank: PRank)
+                            PRankDetail(PRank: PRank, isForMen: isForMen) // Pasamos el parámetro isForMen
                         } label: {
-                            CategoryItem(PRank: PRank)
+                            CategoryItem(PRank: PRank) // Mostrar cada item
                         }
                     }
                 }
             }
-            .frame(height: 180)
+            .frame(height: 180) // Altura del scroll horizontal
         }
-        .background(Color("Background1")) // Fondo de la fila
+        .background(Color("Background1")) // Fondo para toda la fila
     }
 }
 
 struct CategoryRow_Previews: PreviewProvider {
-    static var PRanks = ModelData().PRanks
+    static var modelData = ModelData()
 
     static var previews: some View {
         CategoryRow(
-            categoryName: PRanks[0].category.rawValue,
-            items: Array(PRanks.prefix(3))
+            categoryName: "Legend",
+            items: Array(modelData.menPRanks.prefix(3)), // Proporcionamos ejemplo con hombres
+            isForMen: true
         )
-        .environmentObject(ModelData())
+        .environmentObject(modelData)
         .previewLayout(.sizeThatFits) // Permite visualizarlo correctamente en el preview
-        .background(Color("Background1")) // Muestra el fondo configurado
+        .background(Color("Background")) // Muestra el fondo configurado
     }
 }

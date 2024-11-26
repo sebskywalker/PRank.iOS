@@ -4,11 +4,10 @@
 //
 //  Created by seb's on 11/16/24.
 //
-
 import SwiftUI
 
 struct CategoryItem: View {
-    var PRank: PRank
+    var PRank: PRank // Elemento individual
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,10 +17,9 @@ struct CategoryItem: View {
                 .scaledToFill()
                 .frame(width: 155, height: 155)
                 .cornerRadius(10)
-
             Text(PRank.name)
                 .font(.caption)
-                .foregroundColor(Color("Light"))
+                .foregroundColor(Color("Light")) // Ajustar color dinámicamente
         }
         .padding(.leading, 15)
     }
@@ -29,7 +27,16 @@ struct CategoryItem: View {
 
 struct CategoryItem_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryItem(PRank: ModelData().PRanks[0])
-            .environmentObject(ModelData())
+        let modelData = ModelData()
+        return Group {
+            // Previsualización para hombres
+            CategoryItem(PRank: modelData.menPRanks.first!)
+                .environmentObject(modelData)
+
+            // Previsualización para mujeres
+            CategoryItem(PRank: modelData.womenPRanks.first!)
+                .environmentObject(modelData)
+        }
+        .previewLayout(.sizeThatFits)
     }
 }
