@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "Feature7.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "emilio_carmona@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
