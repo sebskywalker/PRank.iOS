@@ -8,7 +8,6 @@
 //
 //  Created by seb's on 11/12/24.
 //
-
 import Foundation
 import SwiftUI
 import CoreLocation
@@ -34,12 +33,14 @@ struct PRank: Codable, Hashable, Identifiable {
     var prBenchPressKg: Double?
     var prBenchPressLbs: Double?
     var prBarbellSquatKg: Double?
-    var prBarbellSquatLbs : Double?
+    var prBarbellSquatLbs: Double?
+    var prHipThrustKg: Double? // Solo para mujeres
     var prHipThrustLbs: Double?
-    var prHipThrustKg: Double?
-    var prLegPressLbs : Double?
     var prLegPressKg: Double?
-    // Solo para mujeres
+    var prLegPressLbs: Double?
+
+    // Nueva propiedad para la posición en el ranking
+    var rank: Int?
 
     enum Category: String, CaseIterable, Codable {
         case legend = "Legend"
@@ -64,5 +65,14 @@ struct PRank: Codable, Hashable, Identifiable {
     struct Coordinates: Hashable, Codable {
         var latitude: Double
         var longitude: Double
+    }
+}
+
+// Extensión para convertir números en ordinales
+extension Int {
+    func ordinal() -> String {
+        let suffixes = ["th", "st", "nd", "rd"]
+        let index = (self % 100 >= 11 && self % 100 <= 13) ? 0 : Swift.min(self % 10, 3) // Llamada explícita a Swift.min
+        return "\(self)\(suffixes[index])"
     }
 }

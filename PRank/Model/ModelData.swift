@@ -10,7 +10,6 @@
 //
 //  Created by seb's on 11/12/24.
 //
-
 import Foundation
 import Combine
 
@@ -67,6 +66,75 @@ final class ModelData: ObservableObject {
         }
         .reduce(into: [String: [PRank]]()) { result, pair in
             result[pair.key] = pair.value
+        }
+    }
+    
+    // Función para calcular el Strength Score
+    private func calculateStrengthScore(for profiles: [PRank], isForMen: Bool) -> [(PRank, Double)] {
+        var scores: [(PRank, Double)] = []
+
+        for profile in profiles {
+            var score: Double = 0.0
+            
+            if isForMen {
+                // Métrica para hombres
+                if let benchPressKg = profile.prBenchPressKg,
+                   let squatKg = profile.prBarbellSquatKg,
+                   let legPressKg = profile.prLegPressKg {
+                    score += benchPressKg * 1.5 + squatKg * 2.0 + legPressKg
+                }
+            } else {
+                // Métrica para mujeres
+                let hipThrustKg = profile.prHipThrustKg ?? 0
+                let squatKg = profile.prBarbellSquatKg ?? 0
+                let legPressKg = profile.prLegPressKg ?? 0
+                score += (hipThrustKg * 1.5) + (squatKg * 1.2) + (legPressKg * 0.8)
+            }
+
+            // Validar y dividir por el peso corporal
+            if profile.weightKg > 0 {
+                score /= profile.weightKg
+            } else {
+                print("Advertencia: Perfil con peso inválido o cero - \(profile.name)")
+                score = 0.0
+            }
+
+            scores.append((profile, score))
+        }
+
+        // Ordenar de mayor a menor puntaje
+        scores.sort { $0.1 > $1.1 }
+
+        return scores
+    }
+    
+    // Función para actualizar los rankings
+    func updateRankings() {
+        // Calcular rankings para hombres
+        let menRankings = calculateStrengthScore(for: menPRanks, isForMen: true)
+        menPRanks = menRankings.map { $0.0 }
+        
+        // Calcular rankings para mujeres
+        let womenRankings = calculateStrengthScore(for: womenPRanks, isForMen: false)
+        womenPRanks = womenRankings.map { $0.0 }
+    }
+    
+    // Función para agregar un nuevo perfil y actualizar rankings
+    func addProfile(_ profile: PRank, isForMen: Bool) {
+        if isForMen {
+            menPRanks.append(profile)
+        } else {
+            womenPRanks.append(profile)
+        }
+        updateRankings()
+    }
+    
+    // Función para obtener la posición en el Top Rank
+    func rankPosition(for profile: PRank, isForMen: Bool) -> Int? {
+        if isForMen {
+            return menPRanks.firstIndex(where: { $0.id == profile.id }).map { $0 + 1 }
+        } else {
+            return womenPRanks.firstIndex(where: { $0.id == profile.id }).map { $0 + 1 }
         }
     }
 }

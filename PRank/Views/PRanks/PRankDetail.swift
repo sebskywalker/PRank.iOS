@@ -20,6 +20,10 @@ struct PRankDetail: View {
         }
     }
 
+    var rankPosition: Int? {
+        modelData.rankPosition(for: PRank, isForMen: isForMen)
+    }
+
     var body: some View {
         ScrollView {
             // Mapa
@@ -63,6 +67,22 @@ struct PRankDetail: View {
 
                 Divider()
 
+                // Mostrar ranking destacado
+                if let rank = rankPosition {
+                    Text(rank <= 10
+                         ? "\(rank.ordinal()) place in the global top"
+                         : "Rank: \(rank)")
+                        .font(.headline)
+                        .fontWeight(rank <= 10 ? .bold : .regular)
+                        .foregroundColor(rank <= 10 ? .yellow : .blue)
+                } else {
+                    Text("Unranked")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                }
+
+                Divider()
+
                 // Sección "About"
                 Text("About \(PRank.name)")
                     .font(.title2)
@@ -78,10 +98,9 @@ struct PRankDetail: View {
                     if let trainingSpot = PRank.trainingSpot {
                         Text("Training Spot: \(trainingSpot)")
                     }
-                    if isForMen, let primeAge = PRank.primeAge {
-                        Text("Prime Age: \(primeAge)")
-                    } else if let currentAge = PRank.currentAge {
-                        Text("Current Age: \(currentAge)")
+                    // Usar `primeAge` como fallback si no hay `currentAge`
+                    if let age = isForMen ? PRank.primeAge : PRank.primeAge ?? PRank.currentAge {
+                        Text("Age: \(age)")
                     }
                     Text("Weight: \(PRank.weightKg, specifier: "%.1f") kg (\(PRank.weightLbs, specifier: "%.1f") lbs)")
                     Text("Height: \(PRank.heightFt, specifier: "%.2f") ft")
