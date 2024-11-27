@@ -2,6 +2,10 @@
 //  PRank.swift
 //  PRank
 //
+//
+//  PRank.swift
+//  PRank
+//
 //  Created by seb's on 11/12/24.
 //
 
@@ -30,8 +34,12 @@ struct PRank: Codable, Hashable, Identifiable {
     var prBenchPressKg: Double?
     var prBenchPressLbs: Double?
     var prBarbellSquatKg: Double?
-    var prBarbellSquatLbs: Double?
-    var prHipThrustKg: Double? // Solo para mujeres
+    var prBarbellSquatLbs : Double?
+    var prHipThrustLbs: Double?
+    var prHipThrustKg: Double?
+    var prLegPressLbs : Double?
+    var prLegPressKg: Double?
+    // Solo para mujeres
 
     enum Category: String, CaseIterable, Codable {
         case legend = "Legend"

@@ -4,6 +4,12 @@
 //
 //  Created by seb's on 11/12/24.
 //
+//
+//  ModelData.swift
+//  PRank
+//
+//  Created by seb's on 11/12/24.
+//
 
 import Foundation
 import Combine

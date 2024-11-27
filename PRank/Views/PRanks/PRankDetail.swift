@@ -4,6 +4,7 @@
 //
 //  Created by seb's on 11/14/24.
 //
+//
 import SwiftUI
 
 struct PRankDetail: View {
@@ -21,10 +22,12 @@ struct PRankDetail: View {
 
     var body: some View {
         ScrollView {
+            // Mapa
             MapView(coordinate: PRank.locationCoordinates)
                 .ignoresSafeArea(edges: .top)
                 .frame(height: 300)
 
+            // Imagen circular
             CircleImage(image: PRank.image)
                 .frame(width: 250, height: 250)
                 .clipShape(Circle())
@@ -33,7 +36,9 @@ struct PRankDetail: View {
                 .offset(y: -125)
                 .padding(.bottom, -125)
 
+            // Información detallada
             VStack(alignment: .leading, spacing: 10) {
+                // Título y botón de favorito
                 HStack {
                     Text(PRank.name)
                         .font(.title)
@@ -45,6 +50,7 @@ struct PRankDetail: View {
                     )
                 }
 
+                // Subtítulo y ubicación
                 HStack {
                     Text(PRank.nickname)
                         .font(.subheadline)
@@ -57,6 +63,7 @@ struct PRankDetail: View {
 
                 Divider()
 
+                // Sección "About"
                 Text("About \(PRank.name)")
                     .font(.title2)
                     .fontWeight(.semibold)
@@ -64,6 +71,7 @@ struct PRankDetail: View {
 
                 Divider()
 
+                // Información básica
                 Text("Basic Information")
                     .font(.headline)
                 VStack(alignment: .leading, spacing: 8) {
@@ -81,6 +89,7 @@ struct PRankDetail: View {
 
                 Divider()
 
+                // Records personales
                 Text("Personal Records (PRs)")
                     .font(.headline)
                 VStack(alignment: .leading, spacing: 8) {
@@ -88,11 +97,15 @@ struct PRankDetail: View {
                         if let benchPressKg = PRank.prBenchPressKg, let benchPressLbs = PRank.prBenchPressLbs {
                             Text("Bench Press: \(benchPressKg, specifier: "%.1f") kg (\(benchPressLbs, specifier: "%.1f") lbs)")
                         }
-                    } else if let hipThrustKg = PRank.prHipThrustKg {
-                        Text("Hip Thrust: \(hipThrustKg, specifier: "%.1f") kg (\(hipThrustKg * 2.20462, specifier: "%.1f") lbs)")
+                    }
+                    if let hipThrustKg = PRank.prHipThrustKg, let hipThrustLbs = PRank.prHipThrustLbs {
+                        Text("Hip Thrust: \(hipThrustKg, specifier: "%.1f") kg (\(hipThrustLbs, specifier: "%.1f") lbs)")
                     }
                     if let squatKg = PRank.prBarbellSquatKg, let squatLbs = PRank.prBarbellSquatLbs {
                         Text("Barbell Squat: \(squatKg, specifier: "%.1f") kg (\(squatLbs, specifier: "%.1f") lbs)")
+                    }
+                    if let legPressKg = PRank.prLegPressKg, let legPressLbs = PRank.prLegPressLbs {
+                        Text("Leg Press: \(legPressKg, specifier: "%.1f") kg (\(legPressLbs, specifier: "%.1f") lbs)")
                     }
                 }
             }

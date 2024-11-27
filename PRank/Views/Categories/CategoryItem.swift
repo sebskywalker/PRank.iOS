@@ -4,6 +4,7 @@
 //
 //  Created by seb's on 11/16/24.
 //
+
 import SwiftUI
 
 struct CategoryItem: View {
@@ -40,3 +41,4 @@ struct CategoryItem_Previews: PreviewProvider {
         .previewLayout(.sizeThatFits)
     }
 }
+
