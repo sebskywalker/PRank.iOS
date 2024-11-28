@@ -12,28 +12,39 @@ struct ContentView: View {
     enum Tab {
         case men
         case women
-        case list
+        case rankings
+        case map // Nueva pestaña de mapas
     }
 
     var body: some View {
         TabView(selection: $selection) {
+            // Vista de hombres
             CategoryHome()
                 .tabItem {
                     Label("Men", systemImage: "person")
                 }
                 .tag(Tab.men)
 
+            // Vista de mujeres
             WomenCategoryHome()
                 .tabItem {
                     Label("Women", systemImage: "person.fill")
                 }
                 .tag(Tab.women)
 
-            PRankList()
+            // Vista de gráficos
+            RankingView(isForMen: true)
                 .tabItem {
-                    Label("List", systemImage: "list.bullet")
+                    Label("Rankings", systemImage: "chart.bar")
                 }
-                .tag(Tab.list)
+                .tag(Tab.rankings)
+
+            // Nueva pestaña de mapa
+            GymMapView()
+                .tabItem {
+                    Label("Map", systemImage: "map")
+                }
+                .tag(Tab.map)
         }
         .background(Color("Dark"))
         .onAppear {
